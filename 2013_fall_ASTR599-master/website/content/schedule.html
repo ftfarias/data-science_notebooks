@@ -1,0 +1,187 @@
+---
+extends: base.j2
+default_block: main
+title: ASTR 599 Schedule
+description: Astr 599 Schedule
+---
+
+
+<h1>Course Schedule</h1>
+<div class="columns">
+  <div class="box column" id="schedule">
+    <h2>Overview</h2>
+    <p>The course will consist of a two-day intensive bootcamp before the
+      start of the quarter, followed by a weekly seminar during the fall
+      term where more advanced material will be discussed in-depth.  The
+      boot camp will be very hands-on and driven by short and long exercises
+      where the concepts will be applied to programming puzzles as well
+      as basic research problems.</p>
+    <hr><br>
+    <p><b>Note: the following is still in draft form, and will likely be
+      extensively modified before the course starts.</b></p>
+
+  </div>
+
+  <p><i>Much of the content below is adapted from the excellent resources made
+    available by the <a href="http://www.pythonbootcamp.info/">Berkeley
+      Python Bootcamp</a>, as well as material on
+  <a href="http://scipy-lectures.github.io/">SciPy Lectures</a></i></p>
+</font>
+
+  <div class="box column" id="schedule">
+    <h2>Boot Camp Day 1: Sept 19 (Location: PAA 216)</h2>
+    <h3>9:00am - 10:00am :
+	Intro: What is Python and why learn it?</h3>
+    <ul>
+      <li>{{ notebook_link("Introduction", "notebooks/00_intro.ipynb") }}</li>
+    </ul>
+
+    <h3>10:00am - 11:00am :
+      Basic Training (Types, Variables, Calculations, and Flow)</h3>
+    <ul>
+      <li>{{ notebook_link("Basic Training", "notebooks/01_basic_training.ipynb") }}</li>
+    </ul>
+
+    <h3>11:00am - 12:00pm :
+      Advanced Data Structures (Tuples, Lists, Sets, Dicts)</h3>
+    <ul>
+      <li>{{ notebook_link("Advanced Data Structures", "notebooks/02_advanced_data_structures.ipynb") }}</li>
+    </ul>
+    <hr>
+    <p align="center"><b>Lunch Break</b></p>
+    <hr>
+
+    <h3>1:00pm - 2:00pm :
+      In-Depth with the IPython Notebook</h3>
+    <ul>
+      <li>{{ notebook_link("IPython Introduction", "notebooks/03_IPython_intro.ipynb") }}</li>
+    </ul>
+
+    <h3>2:00pm - 3:00pm
+      Working with Functions, Modules, and Packages</h3>
+    <ul>
+      <li>{{ notebook_link("Functions and Modules", "notebooks/04_Functions_and_modules.ipynb") }}</li>
+    </ul>
+
+    <h3>3:00pm - 4:00pm
+      Introduction to Numpy and Matplotlib</h3>
+    <ul>
+      <li>{{ notebook_link("Numpy Intro", "notebooks/05_NumpyIntro.ipynb") }}</li>
+      <li>{{ notebook_link("Matplotlib Intro", "notebooks/06_MatplotlibIntro.ipynb") }}</li>
+    </ul>
+  </div>
+
+  <div class="box column" id="schedule">
+    <h2>Boot Camp Day 2: Sept 20 (Location: PAA 216)</h2>
+
+    <h3>9:00am-10:00am:
+      Version Control with Git</h3>
+    <ul>
+      <li>{{ notebook_link("Git/GitHub Intro", "notebooks/07_GitIntro.ipynb") }}</li>
+    </ul>
+
+    <h3>10:00am-11:00am:
+      An Overview of SciPy</h3>
+    <ul>
+      <li>{{ notebook_link("SciPy Intro", "notebooks/08_ScipyIntro.ipynb") }}</li>
+    </ul>
+
+    <h3>11:00am-12:00pm:
+      Advanced Python: String Manipulations & File I/O</h3>
+    <ul>
+      <li>{{ notebook_link("String Manipulation & File IO", "notebooks/09_AdvancedStrings.ipynb") }}</li>
+    </ul>
+
+    <hr>
+    <p align="center"><b>Lunch Break</b></p>
+    <hr>
+
+    <h3>1:00pm-2:00pm:
+      Efficient computing with NumPy</h3>
+    <ul>
+      <li>{{ notebook_link("Efficient Computing with Numpy", "notebooks/11_EfficientNumpy.ipynb") }}</li>
+    </ul>
+
+    <h3>2:00pm-3:00pm:
+      Advanced Matplotlib: Plot Layouts, Axes, and Ticks</h3>
+    <ul>
+      <li>{{ notebook_link("Matplotlib In Depth", "notebooks/12_AdvancedMatplotlib.ipynb") }}</li>
+    </ul>
+
+    <h3>3:00pm-4:00pm:
+      Advanced Python: Classes, Exceptions, Iterators, and Generators</h3>
+    <ul>
+      <li>{{ notebook_link("Exceptions, Iterators, etc.", "notebooks/10_AdvancedPython2.ipynb") }}</li>
+    </ul>
+
+  </div>
+
+  <div class="box column" id="schedule">
+    <h2>Weekly Seminar (Location: PAB 356A)</h2>
+    <h3>Mon. Sept 30: Class Overview; Efficient Numerical Computing</h3>  
+    <ul>
+      <li>Syllabus & Course Expectations</li>
+      <li> {{ notebook_link("Efficient Computing with Numpy", "notebooks/11_EfficientNumpy.ipynb") }}
+	<br>
+	We didn't get to this topic during the bootcamp, so we'll dive into it now.
+      <li><b>Homework: due Monday, October 7th</b><br>
+	The homework assignment is to complete Parts I and II of the Breakout listed in the above IPython notebook.  It will also give you practice working with Git and Github.  For help on this, I recommend either going back through the lecture material above, or reading through <a href="http://gitref.org/">http://gitref.org/</a>.
+	<ol>
+	  <li>Create a new notebook called <font face="courier">HW1.ipynb</font> and in it complete Part 1 and 2 of the breakout.  Use code cells for code, use heading and markdown cells for description, and make sure to execute the magic command <font face="courier">%pylab inline</font> to embed the resulting figures in the notebook.</li>
+	  <li>The assignment should be turned in by submitting a <i>pull request</i> to the github repository I've set up: <a href="https://github.com/jakevdp/ASTR599_homework">jakevdp/ASTR599_homework</a>.  First <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> the repository (recall that forking is accomplished via the web interface on github.com).
+	  <li><a href="http://gitref.org/branching/">Create a new branch</a> on your clone, and in that branch create a new directory that is your github username.  Put your notebook in this directory, and use <font face="courier">git commit</font> to commit the result.</li>
+	  <li><a href="http://gitref.org/remotes/">Push the branch</a> to your fork (<font face="courier">git push origin branchname</font>). Be aware that this will make your notebook public: anyone with web access can see what you wrote if they know where to look!</li>
+	  <li>From Github, <a href="https://help.github.com/articles/using-pull-requests#before-you-begin">submit a pull request</a> to the original repository to turn-in your work.</li>
+	</ol>
+      </li>
+    </ul>  
+
+    <h3>Mon, Oct 7:
+      Principles of Object-oriented Programming</h3>
+    <ul><li>Guest Lecturer: Morgan Fouesneau</li>
+      <li>{{ notebook_link("Object Oriented Programming", "notebooks/13_OOP.ipynb") }}
+      <li>Please turn in your homework via github, the same way as before, but with the filename "HW2.ipynb".</li>
+</ul>
+
+    <h3>Mon, Oct 14:
+      Optimization and Minimization</h3>
+    <ul><li>Guest Lecturer: Andy Becker</li>
+      <li>{{ notebook_link("Optimization and Minimization", "notebooks/14_optimization.ipynb") }}</li>
+      <li>Homework: repeat the exercise with a different star of your choosing.  Find the order of the model that delta chi2, AIC, and BIC would suggest.  You may turn in your homework as above, with the filename "HW3.ipynb"</li>
+    </ul>
+
+    <h3>Mon, Oct 21:
+      PyFits & Astronomy data formats</h3>    
+    <ul><li>Guest Lecturers: Oliver Fraser and Amelia Brown</li>
+      <li>{{ notebook_link("Using Python & FITS", "notebooks/15_PyFITS.ipynb") }}</li>
+      <li>Homework: follow the instructions in the above notebook and create a FITS file.  Please send a PR with your IPython notebook that accomplishes the task, but <b>Do not commit the fits file itself</b>.  (In general, putting binary files under version control is a bad idea, especially when they can be trivially regenerated).</li>
+</ul>
+
+    <h3>Mon, Oct 28: When Things Go Wrong: Errors, Exceptions, and Debugging</h3>  
+    <ul><li>{{ notebook_link("Errors, Exceptions, and Debugging", "notebooks/16_ExceptionsDebugging.ipynb") }}</li>
+      <li><b>Homework:</b> see the end of the above notebook.  Debug the script, and create a notebook with the fixed result.  Keep track of the process you use to debug it, and write either a couple paragraphs or a bullet-point list of how you proceeded.  Turn it in as usual via github.</li></ul>  
+
+    <h3>Mon, Nov 4:
+      Scikit-learn: machine learning in Python</h3>
+
+    <ul><li>{{ notebook_link("Introduction to Scikit-Learn", "notebooks/17_SklearnIntro.ipynb") }}</li>
+      <li><b>Homework:</b> see the end of the above notebook.  Do the two exercises, using the estimator of your choice.  What level of precision/recall or rms-error can you achieve?  Turn in your results as an IPython notebook via github pull request.</li>
+      <li>We won't get to it in class, but in case you're interested, here's a sequel to the Scikit-Learn introduction: {{ notebook_link("Intermediate Scikit-Learn", "notebooks/18_IntermediateSklearn.ipynb") }}</li>
+</ul>  
+
+    <h3>Mon, Nov 11: (Veteran's Day: no class)</h3>    
+
+    <h3>Mon, Nov 18: 
+      Interfacing with legacy code (Cython & f2py)</h3>  
+    <ul><li>{{ notebook_link("Extending Python", "notebooks/19_ExtendingPython.ipynb") }}</li>
+      <li><b>Homework:</b> see the end of the above notebook.  Turn in your results to Github as an IPython notebook.</li></ul> 
+
+    <h3>Mon, Nov 25: Documentation, Testing, and Packaging</h3> 
+    <ul><li>{{ notebook_link("Documentation & Testing", "notebooks/20_DocsAndTesting.ipynb") }}</li>
+      <li><b>Homework:</b> see the end of the above notebook.  Add the cosmology module to your git repository (under a HW8 directory) and submit a pull request.</li></ul> 
+
+    <h3>Mon, Dec 2: Parallel Computing with IPython</h3>
+    <ul><li>{{ notebook_link("Parallel Computing with IPython", "notebooks/21_IPythonParallel.ipynb") }}</li>
+      <li><b>Homework:</b> see the end of the above notebook.  Choose one of the two problems, and turn the result in via Github (under a HW9 directory)</li></ul> 
+  </div>
+</div>
