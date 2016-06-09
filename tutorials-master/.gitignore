@@ -1,0 +1,4 @@
+.ipynb_checkpoints
+*.pyc
+*/temp/*
+!*/temp/temporary.txt
