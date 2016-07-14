@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>multithreading - Processing single file from multiple processes in python - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Processing single file from multiple processes in python">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I have a single big text file in which I want to process each line ( do some operations ) and store them in a database. Since a single simple program is taking too long, I want it to be done via mu...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python">
+    <link rel="canonical" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python">
+
+    
+    
+    <script type="text/javascript" async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/ados"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/quant.js"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/beacon.js"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/analytics.js"></script><script src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Processing single file from multiple processes in python&#39;" href="http://stackoverflow.com/feeds/question/11196367">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:11196367});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '11196367');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1465922195,"routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"useNewUiForSnippetsEditor":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableSocialMediaInSharePopup":true},"timingsGuid":"405c6689-e60f-40dc-8073-d6e338886c9a","timingsInfo":"gdiEJgcrUa2S1SoviDhZBfhAWEHWUwVKYXOEhlszSTLqN4Sdv1KXeRLYLW+vK0xTqw4LkeubJlQTHZ0H42iZY2/IIBPgSwEhRVTlYvaxNRWqMM6paSiJYiBbKUiPPGnjb92MqBqjZTZSjtvHtqNQMw9RTfIg4M/C+gOpFKZ5CIyCXQ/pFRMa/cBRsHgLidhiRhgyMMPmxyfZDwmQmgMYZKAseghFeKO0qw1QZ6MUvljCcdL4H45M1k/oqhEOqRBQDNJ2U2yoK4XkdEnLeV+3EnNY5R1FXgb5gS27iVgEt9k=","user":{"fkey":"be4b86f9ef00da2eba5065dcba38a544","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"cc0ddb06330e","js/moderator.en.js":"553e2114f45c","js/full-anon.en.js":"4829179da1a3","js/full.en.js":"60ad945cb224","js/wmd.en.js":"db0722a1b43a","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"3199d1e28733","js/help.en.js":"c8004cc0095d","js/tageditor.en.js":"4c3276afb09b","js/tageditornew.en.js":"9817bba60ff0","js/inline-tag-editing.en.js":"4d308a2c585f","js/revisions.en.js":"47de10a8358f","js/review.en.js":"83947f906597","js/tagsuggestions.en.js":"2a9fc67ea337","js/post-validation.en.js":"c94eb27f8121","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"e27da81910e7","js/keyboard-shortcuts.en.js":"612ebfda9b2a","js/external-editor.en.js":"61aa71fa7016","js/external-editor.en.js":"61aa71fa7016","js/snippet-javascript.en.js":"3bbe0fd48cbd","js/snippet-javascript-codemirror.en.js":"67b6a23cd7f8"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/full-anon.en.js"></script><link type="text/css" rel="stylesheet" href="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/jobs-multi.min.css"><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/external-editor.en.js"></script><script type="text/javascript" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/adFeedback.css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    
+        <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 157 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                        About Us
+                        <span class="item-summary">
+                            Learn more about Stack Overflow the company
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                        Business
+                        <span class="item-summary">
+                            Learn more about hiring developers or posting ads with us
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-jobs" href="http://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab">Jobs</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                            </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+<div id="herobox">
+    <div id="hero-content">
+            <div id="close"><a title="click to minimize">_</a></div>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, just like you, helping each other.
+            <br>
+                <br>Join them; it only takes a minute:<br>
+            <br>
+            <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python" id="tell-me-more" class="button">Sign up</a>
+        </div>
+        <div id="desc">
+            <b>Join the Stack Overflow community to:</b>
+            <ol id="hiw">
+                <li id="q">Ask programming questions
+                </li>
+                <li id="an">Answer and help your peers
+                </li>
+                <li id="b">Get recognized for your expertise
+                </li>
+            </ol>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <script>
+        StackExchange.ready(function () {
+
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("question-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("faq-page")) {
+                location = 5;;
+            } else if ($("body").hasClass("home-page")) {
+                location = 3;;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+                });
+                $.cookie("hero", "mini", { path: "/", expires: 365 });
+                $.ajax({
+                    url: "/hero-mini",
+                    success: function (data) {
+                        $("#herobox").fadeOut("fast", function () {
+                            $("#herobox").replaceWith(data);
+                            $("#herobox-mini").fadeIn("fast");
+                        });
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+</div>
+			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python" class="question-hyperlink">Processing single file from multiple processes in python</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="11196367" id="question">
+
+    <div class="everyonelovesstackoverflow adzerk-vote" id="careers1"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo5MTgyOCwiY2giOjExNzgsImNrIjp7fSwiY3IiOjczODAzMCwiZGkiOiI4ZjUxZWQ4ZTY0ZGE0N2EwOTFlYjQxYzlkZTJlZmQ3YyIsImRtIjoxLCJmYyI6NzY5MDc4LCJmbCI6MTY1MjkzLCJpcCI6IjE3OS4xMTEuMjE2LjIwNiIsImt3IjoicHl0aG9uLG11bHRpdGhyZWFkaW5nLG11bHRpcHJvY2Vzc2luZyIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NzY1LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLmJyLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1lOWU0YzZmM2ZhZjI0ZTc1OTkwMGEyOTdlZTU3ZDAwZCIsInpuIjo0MywidHMiOjE0NjU5MjIyMDIxNjcsImJmIjp0cnVlLCJwbiI6ImNhcmVlcnMxIiwidXIiOiJodHRwOi8vcHQuc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zL2Fzaz91dG1fc291cmNlPXN0YWNrb3ZlcmZsb3cuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPXB0c28tMiZ1dG1fY29udGVudD1sYi1uYW8tZW5jb250cm91LWFzayJ9&amp;s=7vMWCRsVYzdBUzus9VvisJbx5wc" rel="nofollow" target="_blank" title=""><img src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/6e0015aeac9141fe82cf1fa9ea10554d.png" title="" alt="" border="0" width="728" height="90"></a><img height="0px" width="0px" border="0" style="position:absolute;" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/i.gif"><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="11196367">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">30</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#">favorite</a>
+        <div class="favoritecount"><b>26</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I have a single big text file in which I want to process each line ( do some operations ) and store them in a database. Since a single simple program is taking too long, I want it to be done via multiple processes or threads. 
+Each thread/process should read the DIFFERENT data(different lines) from that single file and do some operations on their piece of data(lines) and put them in the database so that in the end, I have whole of the data processed and my database is dumped with the data I need.</p>
+
+<p>But I am not able to figure it out that how to approach this. </p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag js-gps-track" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/multithreading" class="post-tag js-gps-track" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a> <a href="http://stackoverflow.com/questions/tagged/multiprocessing" class="post-tag js-gps-track" title="show questions tagged &#39;multiprocessing&#39;" rel="tag">multiprocessing</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/11196367" title="short permalink to this question" class="short-link" id="link-post-11196367">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11196367/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-06-25 19:54:19Z" class="relativetime">Jun 25 '12 at 19:54</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1174984/pranavk"><div class="gravatar-wrapper-32"><img src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/Fs076.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1174984/pranavk">pranavk</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">389</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11196367" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-19512452" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Nice question. I also had this doubt. Though I went with the option of breaking the file into smaller files :)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/981835/sushant-gupta" title="2,839 reputation" class="comment-user">Sushant Gupta</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment19512452_11196367"><span title="2012-12-31 15:47:54Z" class="relativetime-clean">Dec 31 '12 at 15:47</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11196367" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								3 Answers
+                                <span style="display:none;" itemprop="answerCount">3</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="11196615"></a>
+<div id="answer-11196615" class="answer accepted-answer" data-answerid="11196615" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="11196615">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">40</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>What you are looking for is a Producer/Consumer pattern</p>
+
+<p><strong>Basic threading example</strong></p>
+
+<p>Here is a basic example using the <a href="http://docs.python.org/library/threading.html">threading module</a> (instead of multiprocessing)</p>
+
+<pre class="lang-py prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> threading
+</span><span class="kwd">import</span><span class="pln"> </span><span class="typ">Queue</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> sys
+
+</span><span class="kwd">def</span><span class="pln"> do_work</span><span class="pun">(</span><span class="pln">in_queue</span><span class="pun">,</span><span class="pln"> out_queue</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span><span class="pln">
+        item </span><span class="pun">=</span><span class="pln"> in_queue</span><span class="pun">.</span><span class="pln">get</span><span class="pun">()</span><span class="pln">
+        </span><span class="com"># process</span><span class="pln">
+        result </span><span class="pun">=</span><span class="pln"> item
+        out_queue</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="pln">result</span><span class="pun">)</span><span class="pln">
+        in_queue</span><span class="pun">.</span><span class="pln">task_done</span><span class="pun">()</span><span class="pln">
+
+</span><span class="kwd">if</span><span class="pln"> __name__ </span><span class="pun">==</span><span class="pln"> </span><span class="str">"__main__"</span><span class="pun">:</span><span class="pln">
+    work </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Queue</span><span class="pun">.</span><span class="typ">Queue</span><span class="pun">()</span><span class="pln">
+    results </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Queue</span><span class="pun">.</span><span class="typ">Queue</span><span class="pun">()</span><span class="pln">
+    total </span><span class="pun">=</span><span class="pln"> </span><span class="lit">20</span><span class="pln">
+
+    </span><span class="com"># start for workers</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> xrange</span><span class="pun">(</span><span class="lit">4</span><span class="pun">):</span><span class="pln">
+        t </span><span class="pun">=</span><span class="pln"> threading</span><span class="pun">.</span><span class="typ">Thread</span><span class="pun">(</span><span class="pln">target</span><span class="pun">=</span><span class="pln">do_work</span><span class="pun">,</span><span class="pln"> args</span><span class="pun">=(</span><span class="pln">work</span><span class="pun">,</span><span class="pln"> results</span><span class="pun">))</span><span class="pln">
+        t</span><span class="pun">.</span><span class="pln">daemon </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">True</span><span class="pln">
+        t</span><span class="pun">.</span><span class="pln">start</span><span class="pun">()</span><span class="pln">
+
+    </span><span class="com"># produce data</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> xrange</span><span class="pun">(</span><span class="pln">total</span><span class="pun">):</span><span class="pln">
+        work</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)</span><span class="pln">
+
+    work</span><span class="pun">.</span><span class="pln">join</span><span class="pun">()</span><span class="pln">
+
+    </span><span class="com"># get the results</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> xrange</span><span class="pun">(</span><span class="pln">total</span><span class="pun">):</span><span class="pln">
+        </span><span class="kwd">print</span><span class="pln"> results</span><span class="pun">.</span><span class="pln">get</span><span class="pun">()</span><span class="pln">
+
+    sys</span><span class="pun">.</span><span class="pln">exit</span><span class="pun">()</span></code></pre>
+
+<p>You wouldn't share the file object with the threads. You would produce work for them by supplying the <a href="http://docs.python.org/library/queue.html">queue</a> with line of data. Then each thread would pick it up and process it, then return it in the queue. </p>
+
+<p>There are some more advanced facilities built into the <a href="http://docs.python.org/library/multiprocessing.html">multiprocessing module</a> to share data, like lists and <a href="http://docs.python.org/library/multiprocessing.html#multiprocessing.Queue">special kind of Queue</a>. There are trade-offs to using multiprocessing vs threads and it depends on whether your work is cpu bound or IO bound. </p>
+
+<p><strong>Basic multiprocessing.Pool example</strong></p>
+
+<p>Here is a really basic example of a multiprocessing Pool</p>
+
+<pre class="lang-py prettyprint prettyprinted"><code><span class="kwd">from</span><span class="pln"> multiprocessing </span><span class="kwd">import</span><span class="pln"> </span><span class="typ">Pool</span><span class="pln">
+
+</span><span class="kwd">def</span><span class="pln"> process_line</span><span class="pun">(</span><span class="pln">line</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"FOO: %s"</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> line
+
+</span><span class="kwd">if</span><span class="pln"> __name__ </span><span class="pun">==</span><span class="pln"> </span><span class="str">"__main__"</span><span class="pun">:</span><span class="pln">
+    pool </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pool</span><span class="pun">(</span><span class="lit">4</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">with</span><span class="pln"> open</span><span class="pun">(</span><span class="str">'file.txt'</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> source_file</span><span class="pun">:</span><span class="pln">
+        </span><span class="com"># chunk the work into batches of 4 lines at a time</span><span class="pln">
+        results </span><span class="pun">=</span><span class="pln"> pool</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="pln">process_line</span><span class="pun">,</span><span class="pln"> source_file</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="kwd">print</span><span class="pln"> results</span></code></pre>
+
+<p><a href="http://docs.python.org/library/multiprocessing.html#module-multiprocessing.pool">A Pool</a> is a convenience object that manages its own processes. Since an open file can iterate over its lines, you can pass it to the map, which will loop over it and deliver lines to the worker function. <a href="http://docs.python.org/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map">Map</a> blocks and returns the entire result when its done. Be aware that in overly simple example, the <code>map</code> is going to consume your file all at once before dishing out work. So be aware if its larger. There are more advanced ways to design a producer/consumer setup.</p>
+
+<p><strong>Manual "pool" with limit and line re-sorting</strong></p>
+
+<p>This is a manual example of the <a href="http://docs.python.org/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map">Pool.map</a>, but instead of consuming an entire iterable, you can set a queue size so that you are only feeding it piece by piece as fast as it can process. I also added the line numbers so that you can track them and resort them if you want later on.</p>
+
+<pre class="lang-py prettyprint prettyprinted"><code><span class="kwd">from</span><span class="pln"> multiprocessing </span><span class="kwd">import</span><span class="pln"> </span><span class="typ">Process</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Manager</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> time
+</span><span class="kwd">import</span><span class="pln"> itertools 
+
+</span><span class="kwd">def</span><span class="pln"> do_work</span><span class="pun">(</span><span class="pln">in_queue</span><span class="pun">,</span><span class="pln"> out_list</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> </span><span class="kwd">True</span><span class="pun">:</span><span class="pln">
+        item </span><span class="pun">=</span><span class="pln"> in_queue</span><span class="pun">.</span><span class="pln">get</span><span class="pun">()</span><span class="pln">
+        line_no</span><span class="pun">,</span><span class="pln"> line </span><span class="pun">=</span><span class="pln"> item
+
+        </span><span class="com"># exit signal </span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> line </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">:</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln">
+
+        </span><span class="com"># fake work</span><span class="pln">
+        time</span><span class="pun">.</span><span class="pln">sleep</span><span class="pun">(.</span><span class="lit">5</span><span class="pun">)</span><span class="pln">
+        result </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">line_no</span><span class="pun">,</span><span class="pln"> line</span><span class="pun">)</span><span class="pln">
+
+        out_list</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">result</span><span class="pun">)</span><span class="pln">
+
+
+</span><span class="kwd">if</span><span class="pln"> __name__ </span><span class="pun">==</span><span class="pln"> </span><span class="str">"__main__"</span><span class="pun">:</span><span class="pln">
+    num_workers </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pln">
+
+    manager </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Manager</span><span class="pun">()</span><span class="pln">
+    results </span><span class="pun">=</span><span class="pln"> manager</span><span class="pun">.</span><span class="pln">list</span><span class="pun">()</span><span class="pln">
+    work </span><span class="pun">=</span><span class="pln"> manager</span><span class="pun">.</span><span class="typ">Queue</span><span class="pun">(</span><span class="pln">num_workers</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="com"># start for workers    </span><span class="pln">
+    pool </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[]</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> xrange</span><span class="pun">(</span><span class="pln">num_workers</span><span class="pun">):</span><span class="pln">
+        p </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Process</span><span class="pun">(</span><span class="pln">target</span><span class="pun">=</span><span class="pln">do_work</span><span class="pun">,</span><span class="pln"> args</span><span class="pun">=(</span><span class="pln">work</span><span class="pun">,</span><span class="pln"> results</span><span class="pun">))</span><span class="pln">
+        p</span><span class="pun">.</span><span class="pln">start</span><span class="pun">()</span><span class="pln">
+        pool</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">p</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="com"># produce data</span><span class="pln">
+    </span><span class="kwd">with</span><span class="pln"> open</span><span class="pun">(</span><span class="str">"source.txt"</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> f</span><span class="pun">:</span><span class="pln">
+        iters </span><span class="pun">=</span><span class="pln"> itertools</span><span class="pun">.</span><span class="pln">chain</span><span class="pun">(</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">None</span><span class="pun">,)*</span><span class="pln">num_workers</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> num_and_line </span><span class="kwd">in</span><span class="pln"> enumerate</span><span class="pun">(</span><span class="pln">iters</span><span class="pun">):</span><span class="pln">
+            work</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="pln">num_and_line</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pln"> p </span><span class="kwd">in</span><span class="pln"> pool</span><span class="pun">:</span><span class="pln">
+        p</span><span class="pun">.</span><span class="pln">join</span><span class="pun">()</span><span class="pln">
+
+    </span><span class="com"># get the results</span><span class="pln">
+    </span><span class="com"># example:  [(1, "foo"), (10, "bar"), (0, "start")]</span><span class="pln">
+    </span><span class="kwd">print</span><span class="pln"> sorted</span><span class="pun">(</span><span class="pln">results</span><span class="pun">)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11196615" title="short permalink to this answer" class="short-link" id="link-post-11196615">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11196615/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/11196615/revisions" title="show all edits to this post">edited <span title="2012-06-26 01:26:15Z" class="relativetime">Jun 26 '12 at 1:26</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-06-25 20:11:29Z" class="relativetime">Jun 25 '12 at 20:11</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/496445/jdi"><div class="gravatar-wrapper-32"><img src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/db00d7b4388686c6d280e8f0578c7e39" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/496445/jdi">jdi</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 51,827" dir="ltr">51.8k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="85 silver badges"><span class="badge2"></span><span class="badgecount">85</span></span><span title="115 bronze badges"><span class="badge3"></span><span class="badgecount">115</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11196615" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="10" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-14697215" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">yep, the file is larger, about 1 GB or so. I don't know how much  larger you mean by saying larger, 1 GB is larger for me though.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1174984/pranavk" title="389 reputation" class="comment-user owner">pranavk</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment14697215_11196615"><span title="2012-06-25 20:35:20Z" class="relativetime-clean">Jun 25 '12 at 20:35</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14697271" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thats fine. Im sure you can take these examples and extrapolate for your needs. The threading one is fine as it is. The multiprocessing one just needs a similar queue for you to feed.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/496445/jdi" title="51,827 reputation" class="comment-user">jdi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment14697271_11196615"><span title="2012-06-25 20:37:27Z" class="relativetime-clean">Jun 25 '12 at 20:37</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14697535" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is good, but what if the processing is I/O bound?  In that case, parallelism may slow things down rather than speeding it up.  Seeks within a single disk track are much faster than intertrack seeks, and doing I/O in parallel tends to introduce intertrack seeks in what would otherwise be a sequential I/O load.  To get some benefit from parallel I/O, sometimes it helps quite a bit to use a RAID mirror.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1277476/user1277476" title="2,069 reputation" class="comment-user">user1277476</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment14697535_11196615"><span title="2012-06-25 20:47:08Z" class="relativetime-clean">Jun 25 '12 at 20:47</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14697728" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@user1277476: My examples don't really deal with the speed of <i>reading</i> the file. Its reading the exact same way. My examples address the work of processing each line. When I say cpu or io bound, I am referring to what is happening inside the work. The file is not being read any faster. The concept here is that instead of processing each line as you read from the file, you feed the line into a queue and let multiple workers handle it.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/496445/jdi" title="51,827 reputation" class="comment-user">jdi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment14697728_11196615"><span title="2012-06-25 20:54:02Z" class="relativetime-clean">Jun 25 '12 at 20:54</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14700394" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@pranavk: The file size just means you will need enough memory to read it all in. Otherwise you just need to feed it line by line to a queue instead of using the <code>map</code></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/496445/jdi" title="51,827 reputation" class="comment-user">jdi</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment14700394_11196615"><span title="2012-06-25 23:26:29Z" class="relativetime-clean">Jun 25 '12 at 23:26</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11196615" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" onclick="">show <b>10</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<div class="everyonelovesstackoverflow adzerk-vote" id="careers3">
+        <iframe id="ados_frame_careers3_1652974" frameborder="0" scrolling="no" height="90" width="728" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/saved_resource.html"></iframe><img height="0px" width="0px" border="0" style="position:absolute;" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/i(1).gif"><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div></div>
+  
+<a name="11197103"></a>
+<div id="answer-11197103" class="answer" data-answerid="11197103" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="11197103">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's a really stupid example that I cooked up:</p>
+
+<pre class="lang-py prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> os</span><span class="pun">.</span><span class="pln">path
+</span><span class="kwd">import</span><span class="pln"> multiprocessing
+
+</span><span class="kwd">def</span><span class="pln"> newlinebefore</span><span class="pun">(</span><span class="pln">f</span><span class="pun">,</span><span class="pln">n</span><span class="pun">):</span><span class="pln">
+    f</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="pln">n</span><span class="pun">)</span><span class="pln">
+    c</span><span class="pun">=</span><span class="pln">f</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">while</span><span class="pln"> c</span><span class="pun">!=</span><span class="str">'\n'</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> n </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">:</span><span class="pln">
+        n</span><span class="pun">-=</span><span class="lit">1</span><span class="pln">
+        f</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="pln">n</span><span class="pun">)</span><span class="pln">
+        c</span><span class="pun">=</span><span class="pln">f</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+
+    f</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="pln">n</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> n
+
+filename</span><span class="pun">=</span><span class="str">'gpdata.dat'</span><span class="pln">  </span><span class="com">#your filename goes here.</span><span class="pln">
+fsize</span><span class="pun">=</span><span class="pln">os</span><span class="pun">.</span><span class="pln">path</span><span class="pun">.</span><span class="pln">getsize</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">)</span><span class="pln"> </span><span class="com">#size of file (in bytes)</span><span class="pln">
+
+</span><span class="com">#break the file into 20 chunks for processing.</span><span class="pln">
+nchunks</span><span class="pun">=</span><span class="lit">20</span><span class="pln">
+initial_chunks</span><span class="pun">=</span><span class="pln">range</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">fsize</span><span class="pun">,</span><span class="pln">fsize</span><span class="pun">/</span><span class="pln">nchunks</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com">#You could also do something like:</span><span class="pln">
+</span><span class="com">#initial_chunks=range(1,fsize,max_chunk_size_in_bytes) #this should work too.</span><span class="pln">
+
+
+</span><span class="kwd">with</span><span class="pln"> open</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">,</span><span class="str">'r'</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> f</span><span class="pun">:</span><span class="pln">
+    start_byte</span><span class="pun">=</span><span class="pln">sorted</span><span class="pun">(</span><span class="pln">set</span><span class="pun">([</span><span class="pln">newlinebefore</span><span class="pun">(</span><span class="pln">f</span><span class="pun">,</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> initial_chunks</span><span class="pun">]))</span><span class="pln">
+
+end_byte</span><span class="pun">=[</span><span class="pln">i</span><span class="pun">-</span><span class="lit">1</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> start_byte</span><span class="pun">]</span><span class="pln"> </span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">None</span><span class="pun">]</span><span class="pln">
+
+</span><span class="kwd">def</span><span class="pln"> process_piece</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">,</span><span class="pln">start</span><span class="pun">,</span><span class="pln">end</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">with</span><span class="pln"> open</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">,</span><span class="str">'r'</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> f</span><span class="pun">:</span><span class="pln">
+        f</span><span class="pun">.</span><span class="pln">seek</span><span class="pun">(</span><span class="pln">start</span><span class="pun">+</span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">end </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">):</span><span class="pln">
+            text</span><span class="pun">=</span><span class="pln">f</span><span class="pun">.</span><span class="pln">read</span><span class="pun">()</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pun">:</span><span class="pln"> 
+            nbytes</span><span class="pun">=</span><span class="pln">end</span><span class="pun">-</span><span class="pln">start</span><span class="pun">+</span><span class="lit">1</span><span class="pln">
+            text</span><span class="pun">=</span><span class="pln">f</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">nbytes</span><span class="pun">)</span><span class="pln">
+
+    </span><span class="com"># process text here. createing some object to be returned</span><span class="pln">
+    </span><span class="com"># You could wrap text into a StringIO object if you want to be able to</span><span class="pln">
+    </span><span class="com"># read from it the way you would a file.</span><span class="pln">
+
+    returnobj</span><span class="pun">=</span><span class="pln">text
+    </span><span class="kwd">return</span><span class="pln"> returnobj
+
+</span><span class="kwd">def</span><span class="pln"> wrapper</span><span class="pun">(</span><span class="pln">args</span><span class="pun">):</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> process_piece</span><span class="pun">(*</span><span class="pln">args</span><span class="pun">)</span><span class="pln">
+
+filename_repeated</span><span class="pun">=[</span><span class="pln">filename</span><span class="pun">]*</span><span class="pln">len</span><span class="pun">(</span><span class="pln">start_byte</span><span class="pun">)</span><span class="pln">
+args</span><span class="pun">=</span><span class="pln">zip</span><span class="pun">(</span><span class="pln">filename_repeated</span><span class="pun">,</span><span class="pln">start_byte</span><span class="pun">,</span><span class="pln">end_byte</span><span class="pun">)</span><span class="pln">
+
+pool</span><span class="pun">=</span><span class="pln">multiprocessing</span><span class="pun">.</span><span class="typ">Pool</span><span class="pun">(</span><span class="lit">4</span><span class="pun">)</span><span class="pln">
+result</span><span class="pun">=</span><span class="pln">pool</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="pln">wrapper</span><span class="pun">,</span><span class="pln">args</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com">#Now take your results and write them to the database.</span><span class="pln">
+</span><span class="kwd">print</span><span class="pln"> </span><span class="str">""</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">result</span><span class="pun">)</span><span class="pln">  </span><span class="com">#I just print it to make sure I get my file back ...</span></code></pre>
+
+<p>The tricky part here is to make sure that we split the file on newline characters so that you don't miss any lines (or only read partial lines).  Then, each process reads it's part of the file and returns an object which can be put into the database by the main thread.  Of course, you may even need to do this part in chunks so that you don't have to keep all of the information in memory at once.  (this is quite easily accomplished -- just split the "args" list into X chunks and call <code>pool.map(wrapper,chunk)</code>  -- See <a href="http://stackoverflow.com/questions/2130016/splitting-a-list-of-arbitrary-size-into-only-roughly-n-equal-parts">here</a>)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11197103" title="short permalink to this answer" class="short-link" id="link-post-11197103">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11197103/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-06-25 20:46:24Z" class="relativetime">Jun 25 '12 at 20:46</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/748858/mgilson"><div class="gravatar-wrapper-32"><img src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/56e4b8a3291c8dd57978c0c1dcfe056f" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/748858/mgilson">mgilson</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 140,865" dir="ltr">141k</span><span title="21 gold badges"><span class="badge1"></span><span class="badgecount">21</span></span><span title="224 silver badges"><span class="badge2"></span><span class="badgecount">224</span></span><span title="337 bronze badges"><span class="badge3"></span><span class="badgecount">337</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11197103" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11197103" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="11196583"></a>
+<div id="answer-11196583" class="answer" data-answerid="11196583" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="11196583">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>well break the single big file into multiple smaller files and have each of them processed in  separate threads.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11196583" title="short permalink to this answer" class="short-link" id="link-post-11196583">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11196583/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-06-25 20:09:10Z" class="relativetime">Jun 25 '12 at 20:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1461087/tanu"><div class="gravatar-wrapper-32"><img src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/f38c83b7d3a0a3541574bb9e29727fbf" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1461087/tanu">Tanu</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">72</span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11196583" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-59223147" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">can u show some code?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4108070/maq" title="394 reputation" class="comment-user">maq</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#comment59223147_11196583"><span title="2016-03-03 15:10:28Z" class="relativetime-clean">Mar 3 at 15:10</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-11196583" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/11196367/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="11196367">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com.br/">
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="be4b86f9ef00da2eba5065dcba38a544">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown">
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f11196367%2fprocessing-single-file-from-multiple-processes-in-python%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" /&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python#" class="btn-clear discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/python" class="post-tag" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="http://stackoverflow.com/questions/tagged/multithreading" class="post-tag" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a> <a href="http://stackoverflow.com/questions/tagged/multiprocessing" class="post-tag" title="show questions tagged &#39;multiprocessing&#39;" rel="tag">multiprocessing</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-06-25 19:54:19Z"><b>3 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>13554 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/11196367/processing-single-file-from-multiple-processes-in-python?lastactivity" class="lastactivity-link" title="2012-06-26 01:26:15Z">3 years ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+        <div id="hireme" class=" blue looking tagged clc-jobs-multi"><a href="http://stackoverflow.com/jobs" target="_blank" data-at="0" data-tz="1" data-ti="0" class="top"><span>Looking for a job?</span></a><div class="middle"><ul class="jobs"><li><a data-at="0" data-tz="3" data-ti="218133" href="http://stackoverflow.com/jobs/118133/backend-developer-nodejs-revmob" target="_blank" title="Backend Developer - Node.js at RevMob. Click to learn more."><div class="title">Backend Developer - Node.js</div><div><span class="company">RevMob</span><span class="location">São Paulo, Brazil</span></div><span class="post-tag js-gps-track">amazon-web-services</span><span class="post-tag js-gps-track">git</span></a></li><li><a data-at="0" data-tz="3" data-ti="218252" href="http://stackoverflow.com/jobs/118252/senior-ecommerce-software-engineer-focustron-pte" target="_blank" title="Senior eCommerce Software Engineer at Focustron PTE. Click to learn more."><div class="title">Senior eCommerce Software Engineer</div><div><span class="company">Focustron PTE</span><span class="location">No office location</span></div><div class="opts"><span class="opt remote">Remote</span></div><span class="post-tag js-gps-track">mws</span><span class="post-tag js-gps-track">amazon-mws</span></a></li><li><a data-at="0" data-tz="3" data-ti="209817" href="http://stackoverflow.com/jobs/109817/java-software-architect-60k-crossover" target="_blank" title="Java Software Architect - $60k at Crossover. Click to learn more."><div class="title">Java Software Architect - $60k</div><div><span class="company">Crossover</span><span class="location">No office location</span></div><div class="opts"><span class="opt remote">Remote</span></div><span class="post-tag highlight js-gps-track">java</span><span class="post-tag js-gps-track">sql</span></a></li><li><a data-at="0" data-tz="3" data-ti="218335" href="http://stackoverflow.com/jobs/118335/project-reviewer-udacity" target="_blank" title="Project Reviewer at Udacity. Click to learn more."><div class="title">Project Reviewer</div><div><span class="company">Udacity</span><span class="location">No office location</span></div><div class="opts"><span class="opt remote">Remote</span></div><span class="post-tag js-gps-track">python</span><span class="post-tag js-gps-track">machine-learning</span></a></li></ul><div style="clear:both"></div></div><img class="impression" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/soi.gif" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/2130016?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">39</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/2130016/splitting-a-list-of-arbitrary-size-into-only-roughly-n-equal-parts?lq=1" class="question-hyperlink">splitting a list of arbitrary size into only roughly N-equal parts</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/11996632?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">12</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11996632/multiprocessing-in-python-while-limiting-the-number-of-running-processes?lq=1" class="question-hyperlink">Multiprocessing in Python while limiting the number of running processes</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/11493867?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11493867/updating-a-shelve-dictionary-in-python-parallely?lq=1" class="question-hyperlink">updating a shelve dictionary in python parallely</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/12289601?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/12289601/reading-lines-from-python-queues?lq=1" class="question-hyperlink">Reading lines from Python queues</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/11216848?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/11216848/properly-lock-a-multiprocessing-pool-over-an-iterator-without-memory-overhead?lq=1" class="question-hyperlink">Properly lock a multiprocessing.Pool over an iterator without memory overhead</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25779189?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25779189/multiprocess-to-split-one-file-is-it-always-io-bound?lq=1" class="question-hyperlink">multiprocess to split one file - Is it always IO bound?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/30767630?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30767630/how-do-i-free-memory-from-process-in-multiprocessing-queue?lq=1" class="question-hyperlink">How do I free memory from Process in multiprocessing.queue?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/34506358?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/34506358/python-multiprocessing-writing-to-shared-file?lq=1" class="question-hyperlink">python multiprocessing writing to shared file</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/37282387?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/37282387/python-multiprocessing-typeerror-int-object-is-not-iterable?lq=1" class="question-hyperlink">python multiprocessing TypeError: 'int' object is not iterable</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/35304592?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/35304592/creating-a-dictionary-from-a-very-huge-text-file-in-the-multi-threaded-way?lq=1" class="question-hyperlink">Creating a dictionary from a very HUGE text file in the multi-threaded way</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/11196367?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/3044580?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">243
+    </div>
+</a><a href="http://stackoverflow.com/questions/3044580/multiprocessing-vs-threading-python?rq=1" class="question-hyperlink">Multiprocessing vs Threading Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/8260502?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">6
+    </div>
+</a><a href="http://stackoverflow.com/questions/8260502/python-multiple-threads-multiple-processes-for-reading-serial-ports?rq=1" class="question-hyperlink">Python multiple threads/ multiple processes for reading serial ports</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/13014007?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/13014007/threads-vs-processes-in-python?rq=1" class="question-hyperlink">threads vs. processes in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17262095?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/17262095/speed-up-a-single-task-using-multi-processing-or-threading?rq=1" class="question-hyperlink">Speed-up a single task using multi-processing or threading</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20988407?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20988407/how-to-control-multiple-processes-using-multi-threaded-single-process-in-python?rq=1" class="question-hyperlink">How to control multiple processes using multi-threaded single process in python?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21200884?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/21200884/using-threading-multiprocessing-in-python-to-do-multiple-calculations-at-the-sam?rq=1" class="question-hyperlink">Using threading/multiprocessing in python to do multiple calculations at the same time</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25037154?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25037154/multiple-processes-with-multiple-threads-in-python?rq=1" class="question-hyperlink">Multiple processes with multiple threads in Python</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/26165773?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/26165773/python-process-multiple-files?rq=1" class="question-hyperlink">Python Process Multiple Files</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/33663799?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/33663799/writing-to-file-in-python-using-multiple-processes?rq=1" class="question-hyperlink">Writing to file in Python using multiple processes</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/36795086?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">15
+    </div>
+</a><a href="http://stackoverflow.com/questions/36795086/on-what-cpu-cores-are-my-python-processes-running?rq=1" class="question-hyperlink">On what CPU cores are my Python processes running?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/66057/isnt-the-security-of-credit-cards-with-chip-worse-than-with-signature" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Isn't the security of credit cards with chip worse than with signature?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tridion" title="Tridion Stack Exchange"></div><a href="http://tridion.stackexchange.com/questions/14884/translation-manager-email-sending" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:485 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Translation Manager - Email Sending
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/82695/does-a-rogues-expertise-apply-to-passive-perception" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does a Rogue's Expertise Apply to Passive Perception?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/29242/how-did-planes-measure-their-speed-relative-to-the-ground-before-gps" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How did planes measure their speed relative to the ground before GPS?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="http://politics.stackexchange.com/questions/11253/whats-the-explanation-behind-obamas-joke-about-bernie-sanders" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the explanation behind Obama's joke about Bernie Sanders?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div><a href="http://gamedev.stackexchange.com/questions/123867/use-an-instance-or-a-class-for-game-resources-wood-iron-gold" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Use an instance or a class for game resources (wood,iron,gold)
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/141185/clustered-vs-nonclustered-indexes-similar-to-arrays-vs-linked-lists" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Clustered vs Nonclustered indexes, similar to arrays vs linked lists?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/95602/why-do-dialogs-have-grey-backgrounds" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do dialogs have grey backgrounds?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/82773/weapons-of-math-instruction" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Weapons of Math Instruction
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1088537/how-to-take-a-screenshot-that-includes-a-scrolling-element-within-a-web-page-in" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to take a screenshot that includes a scrolling element within a web page in Firefox?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/1089131/is-exfat-fat64" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is exFAT FAT64?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/37800001/are-and-mutually-exclusive" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are `==` and `!=` mutually exclusive?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/242173/division-ring-on-a-field" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Division ring on a field
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/786816/bash-c-v-value-echo-v-displays-nothing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    bash -c "v=value; echo $v" displays nothing
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1825501/why-is-this-matrix-neither-positive-nor-negative-semi-definite" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is this matrix neither positive nor negative semi-definite?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/71304/could-brexit-affect-negatively-phd-students-in-uk" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could Brexit affect negatively PhD students in UK?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="http://movies.stackexchange.com/questions/55437/how-was-this-scene-in-jurassic-world-shot" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How was this scene in Jurassic World shot?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/242178/mathematics-contests-before-1800" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Mathematics contests before 1800
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/69753/how-should-my-employer-compensate-me-for-having-to-bring-my-own-laptop-to-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should my employer compensate me for having to bring my own laptop to work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-fitness" title="Physical Fitness Stack Exchange"></div><a href="http://fitness.stackexchange.com/questions/31181/diet-chart-to-gain-10-12kg-weight" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:216 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Diet chart to gain 10-12kg weight
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/131847/could-draco-kill-dumbledore-with-avada-kedavra" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could Draco kill Dumbledore with Avada Kedavra?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/131854/what-is-king-koopa-the-king-of" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is King Koopa the king of?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/314645/arrow-with-circle-in-the-middle" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Arrow with circle in the middle
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/314632/can-i-define-a-macro-that-accepts-everything-until-the-next-space" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I define a macro that accepts everything until the next space?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/11196367" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/11196367/ivc/1686');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/11196367/ivc/1686" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-py</div></div>
+
+
+        </div>
+    </div><script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/p.js"></script>
+    <div id="footer" class="categories">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.6.14.3671
+            </div>
+                </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|python|multithreading|multiprocessing|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+                
+    </script>
+        
+    
+    
+<script async="" src="./multithreading - Processing single file from multiple processes in python - Stack Overflow_files/ados.js"></script></body></html>
